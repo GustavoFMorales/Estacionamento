@@ -1,0 +1,14 @@
+create database estacionamento;
+use estacionamento;
+
+create table registros(
+id int auto_increment not null,
+nome_cliente varchar(30) not null,
+cpf varchar(14) not null,
+modelo_carro varchar(30) not null,
+placa_carro varchar(30) not null,
+data_entrada varchar(30) not null,
+data_saida varchar(30) not null,
+forma_pagamento varchar(30) not null,
+primary key(id)
+); 

@@ -16,12 +16,12 @@ router.get('/listar', function(req, res){
     if(erro){
       res.status(200).send(erro)
     }
-    resultado =  resultado.map((r)=>{
-      r.data_entrada = format(r.data_entrada, "dd/MM/yyyy HH:mm");
-      r.data_saida = format(r.data_saida, "dd/MM/yyyy HH:mm");
-      return r;
-    })
-    console.log(resultado);
+    // resultado =  resultado.map((r)=>{
+    //   r.data_entrada = format(r.estacionamento.data_entrada, "dd/MM/yyyy HH:mm");
+    //   r.data_saida = format(r.estacionamento.data_saida, "dd/MM/yyyy HH:mm");
+    //   return r;
+    // })
+    // console.log(resultado);
     res.render('lista', {lista : resultado})
   })
 });
@@ -33,7 +33,7 @@ router.get('/add', function(req, res) {
 
 router.post('/add', function(req, res) {
  
-  db.query('insert into registros(nome_clinete,cpf,modelo_carro,placa_carro,data_entrada,data_saida,forma_pagamento) VALUES(?,?,?,?,?,?,?)',[req.body.nome_cliente,req.body.cpf,req.body.modelo_carro,req.body.placa_carro,req.body.data_entrada,req.body.data_saida,req.body.forma_pagamento],function(erro){
+  db.query('insert into registros(nome_cliente,cpf,modelo_carro,placa_carro,data_entrada,data_saida,forma_pagamento) VALUES(?,?,?,?,?,?,?)',[req.body.nome_cliente,req.body.cpf,req.body.modelo_carro,req.body.placa_carro,req.body.data_entrada,req.body.data_saida,req.body.forma_pagamento],function(erro){
     if(erro){
       res.status(200).send('Erro: ' + erro);
     }
@@ -54,7 +54,7 @@ router.get('/edit/:id', function(req, res){
 
 router.post('/edit/:id', function(req, res) {
  
-  db.query('update registros set nome_clinete = ?, cpf = ?, modelo_carro = ?, placa_carro = ?, data_entrada = ?, data_saida = ?, forma_pagamento = ? where id = ?',[req.body.nome_cliente,req.body.cpf,req.body.modelo_carro,req.body.placa_carro,req.body.data_entrada,req.body.data_saida,req.body.forma_pagamento, req.params.id],function(erro){
+  db.query('update registros set nome_cliente = ?, cpf = ?, modelo_carro = ?, placa_carro = ?, data_entrada = ?, data_saida = ?, forma_pagamento = ? where id = ?',[req.body.nome_cliente,req.body.cpf,req.body.modelo_carro,req.body.placa_carro,req.body.data_entrada,req.body.data_saida,req.body.forma_pagamento, req.params.id],function(erro){
     if(erro){
       res.status(200).send('Erro: ' + erro);
     }
