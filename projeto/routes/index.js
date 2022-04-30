@@ -1,7 +1,10 @@
 
 var express = require('express');
-var db = require('../util/db')
+var db = require('../util/db');
+const { format } = require('date-fns');
+
 var router = express.Router();
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -13,6 +16,12 @@ router.get('/listar', function(req, res){
     if(erro){
       res.status(200).send(erro)
     }
+    resultado =  resultado.map((r)=>{
+      r.data_entrada = format(r.data_entrada, "dd/MM/yyyy HH:mm");
+      r.data_saida = format(r.data_saida, "dd/MM/yyyy HH:mm");
+      return r;
+    })
+    console.log(resultado);
     res.render('lista', {lista : resultado})
   })
 });
